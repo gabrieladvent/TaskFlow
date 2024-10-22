@@ -1,66 +1,68 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+    Hope the plan doesn't rot lmao :D
 </p>
 
-## About Laravel
+## About GeoExplorer
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+**GeoExplorer** is a geospatial platform that allows users to find hidden gems, monitor air quality, get earthquake predictions, and view weather conditions at the accessed location.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Key Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 1. Hidden Gems by Location:
 
-## Learning Laravel
+-   Displays a list of hidden gems around the user's location or selected city.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+-   Users can view details about the attractions (address, photos, reviews) and information such as route, cost, best time to visit.
+-   API used:
+    -   Foursquare Places API
+    -   TripAdvisor API
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 2. Air Pollution Tracking:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+-   Displays real-time air quality (AQI) data based on the user's location.
+-   Provides outdoor activity suggestions (for example, whether it is - safe to exercise outdoors based on air quality).
+-   APIs used:
+    -   World Air Quality Index API
 
-## Laravel Sponsors
+### 3. Earthquake Prediction and Visualization:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+-   Displays earthquakes occurring near the user's location or in the global region.
+-   Users can view information such as magnitude, time, and depth of the earthquake.
+-   Provides notification or early warning if there is a significant earthquake in a particular region.
+-   API used:
+    -   USGS Earthquake API
 
-### Premium Partners
+### 4. Real-Time Climate and Weather Information:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+-   Displays current weather data at the user's location including temperature, humidity, wind speed, and forecasts for the next few days.
+-   Provides activity recommendations based on the weather (for example: today is suitable for hiking or traveling).
+-   API used:
+    -   OpenWeatherMap API
+    -   Climate Data API
 
-## Contributing
+## Technology Used
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 1. Backend: Laravel 10
 
-## Code of Conduct
+-   Laravel will be responsible for handling API calls, authentication, and user data management.
+-   Create service integration for each API (Foursquare, AQI, USGS, OpenWeather) inside Laravel, so that you can call APIs easily.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 2. Frontend: Blade (Maybe if someone is willing to collaborate for the front end)
 
-## Security Vulnerabilities
+-   Use interactive maps (e.g. Leaflet.js or Google Maps API) to display hidden gems, earthquakes, and air quality based on the user's location.
+-   Visual information such as AQI charts, weather prediction charts, or earthquake heatmaps can be displayed in chart form (e.g. using Chart.js).
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 3. Database:
+
+-   Store user-generated content data such as hidden gems reviews, planned visits, or locations that have been visited by users.
+-   Save favorite locations for automatic tracking of earthquakes or air quality.
+
+### 4. Geolocation Integration:
+
+-   Use the browser Geolocation API to retrieve the user's location and customize the content displayed (e.g. nearby hidden gems, air pollution data, weather, and earthquake predictions).
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+The Project is open-sourced software licensed under the [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0).
