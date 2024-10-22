@@ -3,10 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Support\Str;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -42,4 +43,28 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($user) {
+            $user->slug = self::createSlug($user->name);
+        });
+    }
+
+    private static function createSlug($name)
+    {
+        if (str_word_count($name) > 1) {
+            return Str::slug($name);
+        } else {
+            $encryptedName = encrypt($name);
+            return Str::slug($encryptedName);
+        }
+    }
+
+    public function insertData($data)
+    {
+        return self::create($data);
+    }
 }
