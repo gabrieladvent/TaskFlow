@@ -5,6 +5,7 @@ namespace App\Http\Controllers\user;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Helpers\ResponsHelper;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -71,12 +72,51 @@ class AuthController extends Controller
         return ResponsHelper::success('User is created successfully', $data, 201);
     }
 
-    public function resend_email(Request $request)
+    public function login_user(Request $request)
     {
-        $request->user()->sendEmailVerificationNotification();
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Email dikirim lagi -_-',
-        ], 201);
+        // Validasi input menggunakan validate method
+        $validated = $request->validate([
+            'email' => 'required|string|email',
+            'password' => 'required|string'
+        ]);
+
+        // Mencari user berdasarkan email
+        $user = $this->user->getDataByEmail($request->email);
+
+        // Memeriksa apakah user ada dan password sesuai
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            return ResponsHelper::error('Login failed! Invalid credentials.', [], 401);
+        }
+
+        // Membuat token jika login berhasil
+        $data['token'] = $user->createToken($request->email)->plainTextToken;
+        $data['user'] = $user;
+
+        // Melakukan login dengan Auth
+        Auth::login($user);
+
+        // Menampilkan pesan sukses
+        toastr()->success('Login berhasil.');
+
+        // Redirect ke halaman home
+        return redirect()->route('home');
+    }
+
+    public function logout(Request $request)
+    {
+        try {
+            if (Auth::user()) {
+                $request->user()->tokens()->delete();
+                Auth::logout();
+            }
+
+            toastr()->success('Task completed successfully.');
+            return redirect()->route('login');
+        } catch (\Exception $e) {
+            Log::error('Logout error: ' . $e->getMessage());
+
+            toastr()->success('Task completed successfully.');
+            return redirect()->route('login');
+        }
     }
 }

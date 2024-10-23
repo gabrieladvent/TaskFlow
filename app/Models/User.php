@@ -67,4 +67,9 @@ class User extends Authenticatable
     {
         return self::create($data);
     }
+
+    public function getDataByEmail($email)
+    {
+        return self::where('email', $email)->first();
+    }
 }

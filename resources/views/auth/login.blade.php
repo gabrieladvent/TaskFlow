@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/TaskFlow_rm_crop_!name.png') }}" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
@@ -30,9 +31,8 @@
                 <header class="justify-content-center d-flex">
                     <h1>
                         <a href="#" class="navbar-brand justify-content-center d-flex">
-                            <img src="{{ asset('assets/img/rmlogo.png') }}" alt="logo" width="150" />
+                            <img src="{{ asset('assets/img/TaskFlow_rm_crop.png') }}" alt="logo" width="150" />
                         </a>
-                        GEOEXPLORER
                     </h1>
                 </header>
 
@@ -80,10 +80,11 @@
 
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-                        <form action="#" method="POST">
+                        <form action="{{ route('login_post') }}" method="POST">
+                            @csrf
                             <!-- Email input -->
                             <div data-mdb-input-init class="form-outline mb-4">
-                                <input type="email" id="loginName" class="form-control" />
+                                <input type="email" id="loginName" class="form-control" name="email" required />
                                 <label class="form-label" for="loginName">Email or username</label>
                             </div>
 
@@ -96,24 +97,24 @@
                                     style="cursor: pointer; right: 10px; top: 50%; transform: translateY(-50%);"></i>
                             </div>
 
-                            <!-- Submit button -->
-                            <button type="submit" data-mdb-button-init data-mdb-ripple-init
-                                class="btn btn-primary btn-block mb-4">Sign in</button>
 
-                            <!-- Register buttons -->
-                            <div class="text-center">
-                                Not a member? <a href="#!">Register</a> | <a href="#!">Forgot password?</a>
-                            </div>
+                            <button type="submit" 
+                                class="btn btn-primary btn-block mb-4">Sign in</button>
                         </form>
+                        <!-- Register buttons -->
+                        <div class="text-center">
+                            Not a member? <a href="#!">Register</a> | <a href="#!">Forgot password?</a>
+                        </div>
                     </div>
 
 
                     <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
-                        <form>
+                        <form action="{{ route('register_post') }}" method="post">
 
                             <!-- Name input -->
                             <div data-mdb-input-init class="form-outline mb-4">
-                                <input type="text" id="registerName" class="form-control" name="name" required />
+                                <input type="text" id="registerName" class="form-control" name="name"
+                                    required />
                                 <label class="form-label" for="registerName">Name</label>
                             </div>
 
@@ -157,7 +158,7 @@
                             </div>
 
                             <!-- Submit button -->
-                            <button type="submit" data-mdb-button-init data-mdb-ripple-init
+                            <button type="submit" 
                                 class="btn btn-primary btn-block mb-3">Sign in</button>
                         </form>
                     </div>

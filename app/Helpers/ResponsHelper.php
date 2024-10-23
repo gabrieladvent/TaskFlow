@@ -21,4 +21,22 @@ class ResponsHelper
             'data' => $data
         ], $code);
     }
+
+    public static function successRedirect($route, $message = 'Success', $data = [], $code = 200)
+    {
+        return redirect()->route($route)
+            ->with('status', 'success')
+            ->with('message', $message)
+            ->with('data', $data)
+            ->setStatusCode($code);
+    }
+
+    public static function errorRedirect($route, $message = 'Error', $data = [], $code = 400)
+    {
+        return redirect()->route($route)
+            ->with('status', 'error')
+            ->with('message', $message)
+            ->with('data', $data)
+            ->setStatusCode($code);
+    }
 }

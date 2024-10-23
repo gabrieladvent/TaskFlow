@@ -1,190 +1,190 @@
 <style>
-    /* RESET/BASIC STYLES
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-    @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
-
-    :root {
-        --white: #ffffff;
-        --light-grey: #edf0f1;
-        --green: #5be19e;
-        --dark-green: #3bbe57;
-        --black: #21232a;
+    #menu {
+        background: #0099CC;
+        height: 45px;
+        padding-left: 18px;
+        border-radius: 10px;
     }
 
-    ul {
-        list-style: none;
+    #menu ul,
+    #menu li {
+        margin: 0 auto;
+        padding: 0;
+        list-style: none
     }
 
-    a {
-        color: inherit;
-        text-decoration: none;
-    }
-
-    body {
-        font-family: "Inter", sans-serif;
-        text-align: center;
-        padding: 0 20px;
-        background: var(--light-grey);
-        color: var(--white);
-    }
-
-    .notification {
-        position: absolute;
-        top: 0;
-        right: 0;
-        padding: 10px;
-        background: var(--green);
-    }
-
-    /* MAIN STYLES
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-    .nav {
-        position: relative;
-        display: flex;
-        justify-content: left; /* Align the menu to the left */
-        max-width: 400px;
-        padding-bottom: 20px;
-        border-radius: 5px 5px 25px 25px;
-        margin: 300px 0 0 20px; /* Adjust margin to position it from the left */
-        background: var(--white);
-        box-shadow: rgb(50 50 93 / 10%) 0 30px 60px -12px, rgb(0 0 0 / 15%) 0 18px 36px -18px;
-    }
-
-    .nav [type="checkbox"] {
-        position: absolute;
-        left: -9999px;
-    }
-
-    .nav [type="checkbox"]+label {
-        position: relative;
-        width: 75px;
-        height: 75px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 16px;
-        cursor: pointer;
-        z-index: 1;
-        background: var(--green);
-        border-radius: 50%;
-        transform: translateY(-50%);
-        transition: all 0.2s;
-    }
-
-    .nav [type="checkbox"]+label:hover {
-        background: var(--dark-green);
-    }
-
-    .menu li {
-    position: absolute;
-    left: 0; /* Align menu items to the left */
-    top: 0; /* Change positioning to start from top */
-    transition: all 0.4s;
-}
-
-.menu li:nth-child(1) {
-    top: 75px; /* Position the first item down */
-    transition-delay: 0.2s;
-}
-
-.menu li:nth-child(2) {
-    top: 140px; /* Adjust position to appear below the first */
-    transition-delay: 0.15s;
-}
-
-.menu li:nth-child(3) {
-    top: 205px; /* Adjust position for the third item */
-    transition-delay: 0.1s;
-}
-
-.menu li:nth-child(4) {
-    top: 270px; /* Adjust position for the fourth item */
-    transition-delay: 0.05s;
-}
-
-    .menu li a {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: var(--green);
-    }
-
-    .menu li a span {
-        position: absolute;
-        top: 0;
-        left: 0;
-        transform: translateY(calc(-100% - 5px));
+    #menu ul {
         width: 100%;
-        font-size: 13px;
-        white-space: nowrap;
-        pointer-events: none;
-        opacity: 0;
-        transition: opacity 0.3s;
-        color: var(--black);
-        font-weight: bold;
+        text-align: left;
     }
 
-    .nav input:checked+label {
-    background: var(--black);
-    transform: translateY(calc(-50% + 4px));
-}
+    #menu li {
+        display: inline-block;
+        position: relative;
+    }
 
-.nav input:checked~.menu li:nth-child(1) {
-    top: 75px;
-    transition-delay: 0.1s;
-}
+    #menu a {
+        display: block;
+        line-height: 45px;
+        padding: 0 14px;
+        text-decoration: none;
+        color: #FFFFFF;
+        font-size: 16px;
+    }
 
-.nav input:checked~.menu li:nth-child(2) {
-    top: 140px;
-    transition-delay: 0.2s;
-}
+    #menu a.dropdown-arrow:after {
+        content: "\25BE";
+        margin-left: 5px;
+    }
 
-.nav input:checked~.menu li:nth-child(3) {
-    top: 205px;
-    transition-delay: 0.3s;
-}
+    #menu li a:hover {
+        color: #0099CC;
+        background: #F2F2F2;
+    }
 
-.nav input:checked~.menu li:nth-child(4) {
-    top: 270px;
-    transition-delay: 0.4s;
-}
+    #menu input {
+        display: none;
+        margin: 0;
+        padding: 0;
+        height: 45px;
+        width: 100%;
+        opacity: 0;
+        cursor: pointer
+    }
 
-    .nav input:checked~.menu li a span {
-        opacity: 1;
-        transition-delay: 0.9s;
+    #menu label {
+        display: none;
+        line-height: 45px;
+        text-align: center;
+        position: absolute;
+        left: 35px
+    }
+
+    #menu label:before {
+        font-size: 1.6em;
+        color: #FFFFFF;
+        content: "\2261";
+        margin-left: 20px;
+    }
+
+    #menu ul.sub-menus {
+        height: auto;
+        overflow: hidden;
+        width: 170px;
+        background: #444444;
+        position: absolute;
+        z-index: 99;
+        display: none;
+    }
+
+    #menu ul.sub-menus li {
+        display: block;
+        text-align: left;
+        width: 100%;
+    }
+
+    #menu ul.sub-menus a {
+        color: #FFFFFF;
+        font-size: 16px;
+    }
+
+    #menu li:hover ul.sub-menus {
+        display: block
+    }
+
+    #menu ul.sub-menus a:hover {
+        background: #F2F2F2;
+        color: #444444;
+    }
+
+    @media screen and (max-width: 800px) {
+        #menu {
+            position: relative
+        }
+
+        #menu ul {
+            background: #444444;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            left: 0;
+            z-index: 3;
+            height: auto;
+            display: none;
+            text-align: left;
+        }
+
+        #menu ul.sub-menus {
+            width: 100%;
+            position: static;
+        }
+
+        #menu ul.sub-menus a {
+            padding-left: 30px;
+        }
+
+        #menu li {
+            display: block;
+            float: none;
+            width: auto;
+        }
+
+        #menu input,
+        #menu label {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block
+        }
+
+        #menu input {
+            z-index: 4
+        }
+
+        #menu input:checked+label {
+            color: #FFFFFF
+        }
+
+        #menu input:checked+label:before {
+            content: "\00d7"
+        }
+
+        #menu input:checked~ul {
+            display: block
+        }
     }
 </style>
-
-<nav class="nav">
-    <input id="menu" type="checkbox">
-    <label for="menu">Menu</label>
-    <ul class="menu">
-        <li>
-            <a href="#0">
-                <span>About</span>
-                <i class="fas fa-address-card" aria-hidden="true"></i>
-            </a>
+<nav id='menu'>
+    <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
+    <ul>
+        <li><a href='http://'>Home</a></li>
+        <li><a class='dropdown-arrow' href='http://'>Products</a>
+            <ul class='sub-menus'>
+                <li><a href='http://'>Products 1</a></li>
+                <li><a href='http://'>Products 2</a></li>
+                <li><a href='http://'>Products 3</a></li>
+                <li><a href='http://'>Products 4</a></li>
+            </ul>
         </li>
-        <li>
-            <a href="#0">
-                <span>Projects</span>
-                <i class="fas fa-tasks" aria-hidden="true"></i>
-            </a>
+        <li><a href='http://'>About</a></li>
+        <li><a class='dropdown-arrow' href='http://'>Services</a>
+            <ul class='sub-menus'>
+                <li><a href='http://'>Services 1</a></li>
+                <li><a href='http://'>Services 2</a></li>
+                <li><a href='http://'>Services 3</a></li>
+            </ul>
         </li>
-        <li>
-            <a href="#0">
-                <span>Clients</span>
-                <i class="fas fa-users" aria-hidden="true"></i>
-            </a>
-        </li>
-        <li>
-            <a href="#0">
-                <span>Contact</span>
-                <i class="fas fa-envelope-open-text" aria-hidden="true"></i>
-            </a>
-        </li>
+        <li><a href='http://'>Contact Us</a></li>
     </ul>
 </nav>
+
+<script>
+    function updatemenu() {
+        if (document.getElementById('responsive-menu').checked == true) {
+            document.getElementById('menu').style.borderBottomRightRadius = '0';
+            document.getElementById('menu').style.borderBottomLeftRadius = '0';
+        } else {
+            document.getElementById('menu').style.borderRadius = '10px';
+        }
+    }
+</script>
